@@ -1,11 +1,10 @@
 var fs = require('fs');
-
 /**
 * Class for message logging.
 */
-export class logger
+class logger
 {
-  function construct(fileName, encoding = 'utf8')
+  constructor(fileName, encoding = 'utf8')
   {
     this.encoding = encoding;
     this.writeStream = fs.createWriteStream(fileName, {flag: 'a'});
@@ -13,13 +12,14 @@ export class logger
   /**
   * Function writes msg into a log file and console
   */
-  function log(msg)
+  log(msg)
   {
     this.writeStream.write(msg, this.encoding);
   }
   // Closes file stream
-  function closeStream()
+  closeStream()
   {
     fs.close(this.writeStream);
   }
 }
+module.exports = logger;
